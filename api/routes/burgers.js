@@ -34,17 +34,19 @@ router.get('/',function (req, res) {
 				return burger.devoured;
 			});
 
-			//res.json(burgersDevoured);
-		  	res.render('index',{
-		  		burgersToBeDevoured : burgersToBeDevoured,
-		  		burgersDevoured : burgersDevoured 
-		  	});
+			res.json(results);
+		  	// res.render('index',{
+		  	// 	burgersToBeDevoured : burgersToBeDevoured,
+		  	// 	burgersDevoured : burgersDevoured 
+		  	// });
 	});  	
   
 });
 	
 // define route adding new burger
 router.post('/', function (req, res) {
+
+	console.log(req.body);
 	
 	models.burgers.create(req.body)
 	.then(function(){

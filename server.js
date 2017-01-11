@@ -2,10 +2,9 @@
 var express = require('express');
 var methodOveride = require('method-override');
 var bodyParser = require('body-parser');
-var exphbs = require('express-handlebars');
 var logger = require('morgan');
-var burgers = require('./controllers/burgers_controller.js');
-var models  = require('./models');
+var burgers = require('./api/routes/burgers.js');
+var models  = require('./api/models');
 
 // extract our sequelize connection from the models object, to avoid confusion
 //var sequelizeConnection = models.sequelize;
@@ -28,27 +27,20 @@ app.use(bodyParser.urlencoded({
 	extended:false
 }));
 
+app.use(bodyParser.json());
 // override with POST having ?_method
 app.use(methodOveride('_method'));
 
-var exphbs = require('express-handlebars');
 
-// register handlebars
-app.engine('handlebars',exphbs({
-	defaultLayout: 'main'
-}));
 
 // middleware to log request to console
 app.use(logger('combined'));
-
-// set the view engine
-app.set('view engine', 'handlebars');
 
 app.use('/',burgers);
 
 
 app.listen(PORT,function(){
-	console.log('Server waiting for requests');
+	console.log('Server waiting for requests on ',PORT);
 });
 
 
