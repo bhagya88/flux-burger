@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import DrinkForm from "./DrinkForm";
+import burgerStore from '../stores/BurgerStore';
 
 class Burgers extends Component{
+
+	constructor(){
+		super();
+
+		this.state = {
+
+			devouredBurgers: burgerStore.getDevoured();
+			tobeDevouredBurgers: burgerStore.getTobeDevoured();
+		}
+	}
 
 
 
