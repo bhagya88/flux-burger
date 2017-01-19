@@ -1,53 +1,100 @@
+// get all dependencies
 import React, { Component } from 'react';
 import DrinkForm from "./DrinkForm";
-import burgerStore from '../stores/BurgerStore';
+import BurgerForm from "./BurgerForm";
+import BurgerStore from '../stores/BurgerStore';
+
+import BurgerActions from '../actions/BurgerActions';
+
 
 class Burgers extends Component{
 
 	constructor(){
 		super();
+		debugger;
+		this.getBurgers = this.getBurgers.bind(this);
 
 		this.state = {
 
-			devouredBurgers: burgerStore.getDevoured();
-			tobeDevouredBurgers: burgerStore.getTobeDevoured();
-		}
+			burgers: BurgerStore.getBurgers()
+
+		};
 	}
 
 
+componentDidMount(){
+	debugger;
+    BurgerStore.addChangeListener(this.getBurgers);
+}
+
+componentWillUnmount() {
+	debugger;
+    BurgerStore.removeChangeListener(this.getBurgers);
+    debugger;
+}
+
+
+getBurgers(){
+	
+	this.setState({
+		burgers: BurgerStore.getBurgers()
+	});
+  
+}
 
 render(){
 
-	return(
-	 <div className="row">
-		
-			<div className="col s6 offset-s1">
-				<div className="row green-text"><h5>Burgers ready to be devoured</h5></div>
+	const tobeDevouredBurgers = this.state.burgers.filter(burger => !burger.devoured);
 
-				 {'burgersToBeDevoured'}
-					<div className="row white valign-wrapper">
-						
-						<div className="col s6  valign-wrapper"><p className="valign">{'id'}. {'burger_name'}</p></div>
+	const devouredBurgers = this.state.burgers.filter(burger => burger.devoured);
 
-						 <DrinkForm/>
-					</div>
-				{'each'}
-
-			</div>
 
 	
-			<div className="col s4 offset-s1">
-				<div className="row red-text"><h5>Devoured Burgers</h5></div>
-				{'each burgersDevoured'}
-				<div className="row">
-					<p>{'id'}. {'burger_name'} 
-					{'each drinks'}
-						<i className="green-text">devoured with drink </i> {'drink_name'}
-					{'each'}
+
+	const tobeDevoured = tobeDevouredBurgers.map(burger => {
+		return (
+		<div className="row white valign-wrapper"  key={burger.id}>
+			<p className="valign row" key={burger.id} >{burger.id} {burger.burger_name}</p> 
+			 <DrinkForm id={burger.id}/>
+		</div>
+		); 
+	});
+
+	const devoured = devouredBurgers.map(burger => {
+		return (
+				<div className="row valign-wrapper"  key={burger.id}>
+					<p  key={burger.id}>{burger.id} {burger.burger_name}{" devoured with Drink "}{burger.drinks[0].drink_name}
+															
 					</p>
+					
 				</div>
-				{'each'}
+			); 
+	    });
+
+	return(
+	 <div className="row">
+			 <div className="row">
+		
+				<div className="col s7">
+					<div className="row green-text"><h5>Burgers ready to be devoured</h5></div>
+				
+						{tobeDevoured} 
+				</div>
+
+		
+				<div className="col s4 offset-s1">
+					<div className="row red-text"><h5>Devoured Burgers</h5></div>
+					
+
+					  { devoured }
+					
+				</div>
 			</div>
+
+			 <div className="row">
+			<BurgerForm/>
+			</div>
+
 		</div>
 
 		);

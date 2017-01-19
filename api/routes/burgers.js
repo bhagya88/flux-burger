@@ -50,7 +50,9 @@ router.post('/', function (req, res) {
 	
 	models.burgers.create(req.body)
 	.then(function(){
-		res.redirect('/');
+		//res.redirect('/');
+
+		res.end();
 	
 	});
   
