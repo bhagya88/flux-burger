@@ -31,19 +31,20 @@ handleChange(e){
 render(){
 
 	return(
-		<form >
-			<div className="col s2 offset-s1" >
-				<p><i>Drink</i></p>
+			<div>
+				<div className="col s2 offset-s1" >
+					<p><i>Drink</i></p>
+				</div>
+				<div className="col s4 valign-wrapper" >
+					<input type="text" id="drink" name="drinkName" value={this.state.drinkName} onChange= {this.handleChange.bind(this)} className="input-field valign" />
+				</div>
+				<div className="col s1 m1 valign-wrapper" >
+					<p>
+					 <button className="btn waves-effect waves-orange" onClick={this.handleSubmit.bind(this)}>Devour</button>
+					</p>
+				</div>
 			</div>
-			<div className="col s4 valign-wrapper" >
-				<input type="text" id="drink" name="drinkName" value={this.state.drinkName} onChange= {this.handleChange.bind(this)} className="input-field valign" />
-			</div>
-			<div className="col s1 m1 valign-wrapper" >
-				<p>
-				 <button type="submit" className="btn waves-effect waves-orange" onClick={this.handleSubmit.bind(this)}>Devour</button>
-				</p>
-			</div>
-		</form>
+	
 		);
 
 }
