@@ -39,7 +39,5 @@ A full stack  CRUD application here customer can order burgers and drinks. When 
 
 * The app will store every burger in a database, whether devoured or not.
 
-### Directory structure:
-The directory structure for this application looks like this.
 
-#### Developed by Bhagya
+##### Developed by Bhagya
