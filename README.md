@@ -2,7 +2,7 @@
 
 ### Overview
 
-A full stack  CRUD application here customer can order burgers and drinks. When the customer devours the burger by clicking a button, it gets added to the devoured list.
+A full stack  CRUD application here customer can order burgers and drinks. When the customer devours the burger by clicking a button, it gets added to the devoured list. This is a react-flux version of the Sequelized Burger application that I developed earlier.
 
 ### Demo
 [Check to see the demo]()
