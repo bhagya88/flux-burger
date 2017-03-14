@@ -10,15 +10,6 @@ A full stack  CRUD application here customer can order burgers and drinks.
 * Npm modules used - express, mysql, express-handlebars, body-parser, path, method-overide
 * React, Flux, Materialize CSS, HTML5
 
-
-### Design
-MVC design pattern and Server side rendering are used. 
-Parent - Child association/ relationship is used.
-
-* Model - sequelize models are created to model the database. 
-* Views- Views are created using express-handlebars, HTML, CSS
-* Controller - Requests coming to the server are handled by the controller/router which in turn communicates with model to get data and passes it to the views. 
-
 ### Challenges faced
 * How to use Flux to manage state?
 
